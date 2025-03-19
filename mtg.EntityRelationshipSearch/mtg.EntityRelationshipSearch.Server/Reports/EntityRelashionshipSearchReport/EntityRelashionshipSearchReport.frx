@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReferencedAssemblies="System.dll&#13;&#10;System.Core.dll&#13;&#10;System.Drawing.dll&#13;&#10;System.Windows.Forms.dll&#13;&#10;System.Data.dll&#13;&#10;System.Xml.dll&#13;&#10;Sungero.Domain.Shared&#13;&#10;Sungero.CoreEntities.Shared&#13;&#10;Sungero.Reporting.Shared&#13;&#10;CommonLibrary&#13;&#10;Sungero.Localization&#13;&#10;Sungero.Declension&#13;&#10;Sungero.Domain.Interfaces&#13;&#10;mtg.EntityRelationshipSearch.Shared&#13;&#10;mtg.EntityRelationshipSearch.Server" ReportInfo.CreatorVersion="2020.2.12.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+using Sungero.Domain.Shared;
+using Sungero.CoreEntities;
+using Sungero.Core;
+using Resources = mtg.EntityRelationshipSearch.Reports.Resources;
+
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+  }
+}
+  </ScriptText>
+  <Dictionary>
+    <SungeroSqlDataConnection Name="Sungero_Connection" Restrictions="DontModify, DontEdit, DontDelete, HideAllProperties" ConnectionStringExpression="[SungeroConnectionString]">
+      <TableDataSource Name="Table" Alias="EntityRelashionshipSearchTable" DataType="System.Int32" Enabled="true" CanEdit="true" SelectCommand="${SelectTableData}">
+        <Column Name="EntityId" DataType="System.Int64" PropName="Column"/>
+        <Column Name="EntityType" DataType="System.String" PropName="Column"/>
+        <Column Name="Name" DataType="System.String" PropName="Column"/>
+        <Column Name="EntityHyperlink" DataType="System.String" PropName="Column"/>
+        <CommandParameter Name="ReportSessionId" DataType="16" IsDbType="true" Expression="[ReportSessionId]"/>
+      </TableDataSource>
+    </SungeroSqlDataConnection>
+    <SungeroParameter Name="SungeroConnectionString" Restrictions="DontModify, DontEdit, DontDelete, HideAllProperties, DontShow" Id="b1eb46c9-4d18-4c96-8c82-f84d9c319a81" IsRequired="false" IsCollection="false" InternalDataType="System.String" IsSimpleDataType="false" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
+    <SungeroParameter Name="EntityId" Id="c2ccd0c3-82e0-440f-b6f6-44220e7e49cd" IsRequired="false" IsCollection="false" InternalDataType="System.Int64" IsSimpleDataType="true" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
+    <SungeroParameter Name="ReportSessionId" Id="a65ce06d-47a6-43cc-95f4-7e7fdd0f76b3" IsRequired="false" IsCollection="false" InternalDataType="System.String" IsSimpleDataType="false" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
+    <SungeroParameter Name="SourceEntityName" Id="35a66a6f-154e-4777-8053-278d8d9b8a2c" IsRequired="false" IsCollection="false" InternalDataType="System.String" IsSimpleDataType="false" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
+    <SungeroParameter Name="Relashions" Id="aa7973e7-53c5-4b15-988a-e47923de49d1" IsRequired="false" IsCollection="false" InternalDataType="System.String" IsSimpleDataType="false" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="66.15">
+      <TextObject Name="Text1" Width="718.2" Height="37.8" Text="[mtg.EntityRelationshipSearch.Reports.Resources.EntityRelashionshipSearchReport.ReportTitleFormat([SourceEntityName], [EntityId])]" HorzAlign="Center" VertAlign="Center" Font="Arial, 16pt"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="70.15" Width="718.2" Height="37.8">
+      <TextObject Name="Text3" Top="9.45" Width="623.7" Height="28.35" Border.Lines="All" Text="[mtg.EntityRelationshipSearch.Reports.Resources.EntityRelashionshipSearchReport.NameColumn]" HorzAlign="Center" VertAlign="Center" Font="Arial, 11pt, style=Bold"/>
+      <TextObject Name="Text4" Left="623.7" Top="9.45" Width="94.5" Height="28.35" Border.Lines="All" Text="[mtg.EntityRelationshipSearch.Reports.Resources.EntityRelashionshipSearchReport.ID]" HorzAlign="Center" VertAlign="Center" Font="Arial, 11pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="111.95" Width="718.2" Height="28.35" Condition="[EntityRelashionshipSearchTable.EntityType]">
+      <TextObject Name="Text5" Width="718.2" Height="28.35" Border.Lines="All" Text="[EntityRelashionshipSearchTable.EntityType]" VertAlign="Center" Font="Arial, 11pt, style=Bold"/>
+      <DataBand Name="Data1" Top="144.3" Width="718.2" Height="28.35" DataSource="Table">
+        <TextObject Name="Text6" Width="623.7" Height="28.35" Border.Lines="All" Text="[EntityRelashionshipSearchTable.Name]" HorzAlign="Center" VertAlign="Center" Font="Arial, 11pt"/>
+        <TextObject Name="Text7" Left="623.7" Width="94.5" Height="28.35" Border.Lines="All" Cursor="Hand" Hyperlink.Expression="[EntityRelashionshipSearchTable.EntityHyperlink]" Text="[EntityRelashionshipSearchTable.EntityId]" HorzAlign="Center" VertAlign="Center" Font="Arial, 11pt, style=Underline" TextFill.Color="Blue"/>
+      </DataBand>
+    </GroupHeaderBand>
+  </ReportPage>
+</Report>

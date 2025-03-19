@@ -1,0 +1,62 @@
+{
+  "$type": "Sungero.Metadata.ReportMetadata, Sungero.Reporting.Shared",
+  "NameGuid": "d49c411d-1eb7-41c8-a4e2-c85d009a6852",
+  "Name": "EntityRelashionshipSearchReport",
+  "AssociatedGuid": "813fecc5-64fa-4f36-9b91-dcfac12cb565",
+  "BaseGuid": "cef9a810-3f30-4eca-9fe3-30992af0b818",
+  "DataSources": [],
+  "DefaultExportFormat": "Word",
+  "ExportFormats": [
+    "Word",
+    "Pdf"
+  ],
+  "HandledEvents": [
+    "BeforeExecuteServer",
+    "AfterExecuteServer"
+  ],
+  "IconResourcesKeys": [],
+  "IntegrationServiceName": "EntityRelationshipSearchEntityRelashionshipSearchReport",
+  "Overridden": [
+    "DisplayName",
+    "Description",
+    "ExportFormats",
+    "DefaultExportFormat",
+    "Parameters",
+    "HandledEvents"
+  ],
+  "Parameters": [
+    {
+      "NameGuid": "c2ccd0c3-82e0-440f-b6f6-44220e7e49cd",
+      "Name": "EntityId",
+      "InternalDataTypeName": "System.Int64",
+      "IsSimpleDataType": true
+    },
+    {
+      "NameGuid": "a65ce06d-47a6-43cc-95f4-7e7fdd0f76b3",
+      "Name": "ReportSessionId",
+      "InternalDataTypeName": "System.String"
+    },
+    {
+      "NameGuid": "35a66a6f-154e-4777-8053-278d8d9b8a2c",
+      "Name": "SourceEntityName",
+      "InternalDataTypeName": "System.String"
+    },
+    {
+      "NameGuid": "aa7973e7-53c5-4b15-988a-e47923de49d1",
+      "Name": "Relashions",
+      "InternalDataTypeName": "System.String"
+    }
+  ],
+  "PublicStructures": [],
+  "ResourcesKeys": [
+    "NameColumn",
+    "ID",
+    "ReportTitle"
+  ],
+  "Versions": [
+    {
+      "Type": "ReportMetadata",
+      "Number": 1
+    }
+  ]
+}

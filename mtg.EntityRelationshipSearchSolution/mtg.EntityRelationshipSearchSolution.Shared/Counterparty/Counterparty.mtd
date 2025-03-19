@@ -1,0 +1,109 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "5ecdf6d5-c8a0-4913-b381-e69d5dac796e",
+  "Name": "Counterparty",
+  "Actions": [
+    {
+      "NameGuid": "fc751b3f-c793-4684-b402-f81e61d7a9f9",
+      "Name": "OpenEntityRelashionshipSearchReport",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_OpenEntityRelashionshipSearchReport_large_fc751b3fc7934684b402f81e61d7a9f9.png",
+      "SmallIconName": "Action_OpenEntityRelashionshipSearchReport_small_fc751b3fc7934684b402f81e61d7a9f9.png"
+    }
+  ],
+  "BaseGuid": "294767f1-009f-4fbd-80fc-f98c49ddc560",
+  "CanBeNavigationPropertyType": true,
+  "CreationAreaMetadata": {
+    "NameGuid": "44f23965-7406-44e3-b898-7004712bfbbe",
+    "Name": "CreationArea",
+    "Buttons": [],
+    "IsAncestorMetadata": true,
+    "Versions": []
+  },
+  "ExtraSearchProperties": [],
+  "FilterPanel": {
+    "NameGuid": "b0125fbd-3b91-4dbb-914a-689276216404",
+    "Name": "FilterPanel",
+    "Controls": [],
+    "IsAncestorMetadata": true,
+    "Versions": []
+  },
+  "Forms": [
+    {
+      "$type": "Sungero.Metadata.StandaloneFormMetadata, Sungero.Metadata",
+      "NameGuid": "026f3b94-a2e4-47bc-a270-d900853f782e",
+      "Name": "Card",
+      "Controls": [],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "UseAncestorControls",
+        "SettingsResourceKey"
+      ],
+      "Versions": []
+    }
+  ],
+  "IconResourcesKeys": [],
+  "IsAbstract": true,
+  "LayeredFromGuid": "294767f1-009f-4fbd-80fc-f98c49ddc560",
+  "OperationsClass": "",
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "8c43815d-1a3d-47ec-a98d-909052509a21",
+      "Name": "ExchangeBoxes",
+      "EntityGuid": "5d46574b-d183-4e52-aeb0-1bee915cf8f9",
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "EntityGuid"
+      ],
+      "Versions": []
+    }
+  ],
+  "PublicStructures": [],
+  "ResourcesKeys": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "b66c94c8-ab91-4002-b843-d81faae00362",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "0d815fc0-6647-4f23-bccb-22e0336f5231",
+        "Name": "OpenEntityRelashionshipSearchReport",
+        "ActionGuid": "fc751b3f-c793-4684-b402-f81e61d7a9f9",
+        "ButtonSize": "Large",
+        "Index": -1,
+        "ParentGuid": "30f71754-77aa-4fe8-bc74-c15845f3bba5"
+      }
+    ],
+    "Groups": [
+      {
+        "NameGuid": "30f71754-77aa-4fe8-bc74-c15845f3bba5",
+        "Name": "Reports",
+        "IconName": null,
+        "Index": 23,
+        "ParentGuid": "21a31627-5f58-4416-8c4a-90f538ee2e57",
+        "SmallIconName": null
+      }
+    ],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "490addd7-428f-4075-9480-96f44247c44c",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 13
+    }
+  ]
+}

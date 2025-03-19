@@ -1,0 +1,67 @@
+{
+  "$type": "Sungero.Metadata.SolutionMetadata, Sungero.Metadata",
+  "NameGuid": "4c73780a-8736-41e9-b30e-80a792d4cf7c",
+  "Name": "EntityRelationshipSearchSolution",
+  "AsyncHandlers": [],
+  "ClientAssemblyName": "mtg.EntityRelationshipSearchSolution.Client",
+  "ClientBaseAssemblyName": "mtg.EntityRelationshipSearchSolution.ClientBase",
+  "ClientBaseNamespace": "mtg.EntityRelationshipSearchSolution.ClientBase",
+  "ClientNamespace": "mtg.EntityRelationshipSearchSolution.Client",
+  "Code": "EntityR",
+  "CompanyCode": "mtg",
+  "Cover": {
+    "NameGuid": "b3ce66e3-d2f3-4a74-bd72-b2bd11f7ddd1",
+    "Actions": [],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "4ad03b07-f2e6-41f8-9d78-a03658c2eb90",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [],
+    "Header": {
+      "NameGuid": "83d055b6-0c42-4304-b135-e837d2bcf0b5",
+      "BackgroundPosition": "Stretch"
+    },
+    "RemoteControls": [],
+    "Tabs": []
+  },
+  "DesktopViews": [],
+  "ExplorerTreeOrder": [
+    {
+      "ItemId": "5ecdf6d5-c8a0-4913-b381-e69d5dac796e"
+    }
+  ],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "mtg.EntityRelationshipSearchSolution",
+  "IsolatedAssemblyName": "mtg.EntityRelationshipSearchSolution.Isolated",
+  "IsolatedNamespace": "mtg.EntityRelationshipSearchSolution.Isolated",
+  "IsVisible": false,
+  "OrderedSpecialFolders": [],
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "mtg.EntityRelationshipSearchSolution",
+  "ResourcesKeys": [],
+  "ServerAssemblyName": "mtg.EntityRelationshipSearchSolution.Server",
+  "ServerNamespace": "mtg.EntityRelationshipSearchSolution.Server",
+  "SharedAssemblyName": "mtg.EntityRelationshipSearchSolution.Shared",
+  "SharedNamespace": "mtg.EntityRelationshipSearchSolution.Shared",
+  "SpecialFolders": [],
+  "Version": "0.0.1.0",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "SolutionMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}
