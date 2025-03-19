@@ -1,0 +1,156 @@
+{
+  "$type": "Sungero.Metadata.ModuleMetadata, Sungero.Metadata",
+  "NameGuid": "813fecc5-64fa-4f36-9b91-dcfac12cb565",
+  "Name": "EntityRelationshipSearch",
+  "AsyncHandlers": [],
+  "ClientAssemblyName": "mtg.EntityRelationshipSearch.Client",
+  "ClientBaseAssemblyName": "mtg.EntityRelationshipSearch.ClientBase",
+  "ClientBaseNamespace": "mtg.EntityRelationshipSearch.ClientBase",
+  "ClientNamespace": "mtg.EntityRelationshipSearch.Client",
+  "Code": "Entity1",
+  "CompanyCode": "mtg",
+  "Cover": {
+    "NameGuid": "caff5663-5b92-4688-9630-5851b2da0ceb",
+    "Actions": [],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "4fbce173-2e2b-4c00-9b85-66011e632b12",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [],
+    "Header": {
+      "NameGuid": "b9e29e20-4ce6-492b-a499-73f500c5ccb8",
+      "BackgroundPosition": "Stretch"
+    },
+    "RemoteControls": [],
+    "Tabs": []
+  },
+  "Dependencies": [
+    {
+      "Id": "4c73780a-8736-41e9-b30e-80a792d4cf7c",
+      "IsSolutionModule": true,
+      "MaxVersion": "",
+      "MinVersion": ""
+    }
+  ],
+  "ExplorerTreeOrder": [
+    {
+      "ItemId": "d49c411d-1eb7-41c8-a4e2-c85d009a6852"
+    }
+  ],
+  "HandledEvents": [
+    "InitializingServer"
+  ],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "mtg.EntityRelationshipSearch",
+  "IsolatedAssemblyName": "mtg.EntityRelationshipSearch.Isolated",
+  "IsolatedNamespace": "mtg.EntityRelationshipSearch.Isolated",
+  "IsVisible": false,
+  "PublicFunctions": [
+    {
+      "Name": "GetDbTableName",
+      "Parameters": [
+        {
+          "Name": "entity",
+          "ParameterType": "global::Sungero.Domain.Shared.IEntity",
+          "ParameterTypeFullName": "Sungero.Domain.Shared.IEntity, Sungero.Domain.Shared"
+        }
+      ],
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "GetEntityGuid",
+      "Parameters": [
+        {
+          "Name": "entity",
+          "ParameterType": "global::Sungero.Domain.Shared.IEntity",
+          "ParameterTypeFullName": "Sungero.Domain.Shared.IEntity, Sungero.Domain.Shared"
+        }
+      ],
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "GetEntityRelationship",
+      "Parameters": [
+        {
+          "Name": "entity",
+          "ParameterType": "global::Sungero.Domain.Shared.IEntity",
+          "ParameterTypeFullName": "Sungero.Domain.Shared.IEntity, Sungero.Domain.Shared"
+        }
+      ],
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "GetSourceEntityTypeName",
+      "Parameters": [
+        {
+          "Name": "entity",
+          "ParameterType": "global::Sungero.Domain.Shared.IEntity",
+          "ParameterTypeFullName": "Sungero.Domain.Shared.IEntity, Sungero.Domain.Shared"
+        }
+      ],
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "GetTemplateUrl",
+      "Parameters": [
+        {
+          "Name": "entity",
+          "ParameterType": "global::Sungero.Domain.Shared.IEntity",
+          "ParameterTypeFullName": "Sungero.Domain.Shared.IEntity, Sungero.Domain.Shared"
+        }
+      ],
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "OpenEntityRelashionshipSearchReport",
+      "Parameters": [
+        {
+          "Name": "entity",
+          "ParameterType": "global::Sungero.Domain.Shared.IEntity",
+          "ParameterTypeFullName": "Sungero.Domain.Shared.IEntity, Sungero.Domain.Shared"
+        }
+      ],
+      "Placement": "Client",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    }
+  ],
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "mtg.EntityRelationshipSearch",
+  "ResourcesKeys": [
+    "NotFoundRelationships",
+    "EntityNotFound",
+    "ReportCouldNotGenerated",
+    "CollectionPart",
+    "DocumentEntityName",
+    "TaskEntityName",
+    "AssignmentEntityName",
+    "DatabookRecordEntityName"
+  ],
+  "ServerAssemblyName": "mtg.EntityRelationshipSearch.Server",
+  "ServerNamespace": "mtg.EntityRelationshipSearch.Server",
+  "SharedAssemblyName": "mtg.EntityRelationshipSearch.Shared",
+  "SharedNamespace": "mtg.EntityRelationshipSearch.Shared",
+  "SpecialFolders": [],
+  "Version": "0.0.1.0",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}
