@@ -11,15 +11,6 @@ namespace mtg.EntityRelationshipSearch.Server
 {
   public class ModuleFunctions
   {
-    
-    /// <summary>
-    /// Получить строку со связанными таблицами.
-    /// </summary>
-    /// <param name="dbTableName">Наименование таблицы в БД.</param>
-    /// <param name="entityId">ИД сущности.</param>
-    /// <returns>Строка со связанными таблицами.</returns>
-    /// 
-    
     /// <summary>
     /// Получить строку с информацией по связанным таблицам в БД.
     /// </summary>
@@ -287,15 +278,13 @@ namespace mtg.EntityRelationshipSearch.Server
     [Public]
     public static string GetSourceEntityTypeName(Sungero.Domain.Shared.IEntity entity)
     {
-      var entityType = entity.GetType();
-      
-      if (typeof(Sungero.Docflow.IOfficialDocument).IsAssignableFrom(entityType))
+      if (Sungero.Docflow.OfficialDocuments.Is(entity))
         return mtg.EntityRelationshipSearch.Resources.DocumentEntityName;
       
-      if (typeof(Sungero.Workflow.ITask).IsAssignableFrom(entityType))
+      if (Sungero.Workflow.Tasks.Is(entity))
         return mtg.EntityRelationshipSearch.Resources.TaskEntityName;
-
-      if (typeof(Sungero.Workflow.IAssignment).IsAssignableFrom(entityType))
+      
+      if (Sungero.Workflow.Assignments.Is(entity))
         return mtg.EntityRelationshipSearch.Resources.AssignmentEntityName;
       
       return mtg.EntityRelationshipSearch.Resources.DatabookRecordEntityName;
