@@ -18,6 +18,13 @@ namespace mtg.EntityRelationshipSearch.Server
     /// <param name="dbTableName">Наименование таблицы в БД.</param>
     /// <param name="entityId">ИД сущности.</param>
     /// <returns>Строка со связанными таблицами.</returns>
+    /// 
+    
+    /// <summary>
+    /// Получить строку с информацией по связанным таблицам в БД.
+    /// </summary>
+    /// <param name="entity">Сущность.</param>
+    /// <returns>Строка с информацией по связанным таблицам.</returns>
     [Public]
     public virtual string GetEntityRelationship(Sungero.Domain.Shared.IEntity entity)
     {
@@ -251,6 +258,7 @@ namespace mtg.EntityRelationshipSearch.Server
     /// Получить наименование типа сущности.
     /// </summary>
     /// <param name="entityGuid">GUID сущности.</param>
+    /// <param name="isCollectionEntity">Признак, является ли сущность коллекцией.</param>
     /// <returns>Наименование типа сущности.</returns>
     public static string GetEntityDisplayName(string entityGuid, bool isCollectionEntity)
     {

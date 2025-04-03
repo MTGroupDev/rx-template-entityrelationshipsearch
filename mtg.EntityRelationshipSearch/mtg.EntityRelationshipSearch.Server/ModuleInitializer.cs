@@ -12,21 +12,7 @@ namespace mtg.EntityRelationshipSearch.Server
 
     public override void Initializing(Sungero.Domain.ModuleInitializingEventArgs e)
     {
-      GrandAcessRightsOnReports();
       CreateReportsTables();
-    }
-    
-    /// <summary>
-    /// Выдать права на отчеты.
-    /// </summary>
-    public void GrandAcessRightsOnReports()
-    {
-      InitializationLogger.DebugFormat("GrandAcessRightsOnReports.");
-      
-      var allUsers = Roles.AllUsers;
-      
-      if (allUsers != null)
-        Reports.AccessRights.Grant(Reports.GetEntityRelashionshipSearchReport().Info, allUsers, DefaultReportAccessRightsTypes.Execute);
     }
     
     /// <summary>
