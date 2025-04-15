@@ -42,9 +42,25 @@
       "InternalDataTypeName": "System.String"
     },
     {
-      "NameGuid": "aa7973e7-53c5-4b15-988a-e47923de49d1",
-      "Name": "Relashions",
+      "NameGuid": "f3e14cf6-9dd3-499d-9d15-9469af82cec0",
+      "Name": "DbTableName",
       "InternalDataTypeName": "System.String"
+    },
+    {
+      "NameGuid": "1d963e1f-6a85-4a8a-80a6-a96c41a47d77",
+      "Name": "EntityGuid",
+      "InternalDataTypeName": "System.String"
+    },
+    {
+      "NameGuid": "1831ff39-e62f-4bc4-a8ff-c22e31eb04af",
+      "Name": "HyperlinkTemplate",
+      "InternalDataTypeName": "System.String"
+    },
+    {
+      "NameGuid": "1b4364cc-5fc6-491c-a4e4-0a7d0669d696",
+      "Name": "HasRelationships",
+      "InternalDataTypeName": "System.Boolean",
+      "IsSimpleDataType": true
     }
   ],
   "PublicStructures": [],

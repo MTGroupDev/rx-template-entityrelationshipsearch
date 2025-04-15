@@ -24,20 +24,13 @@ namespace mtg.EntityRelationshipSearch.Client
       
       try
       {
-        string relations = mtg.EntityRelationshipSearch.PublicFunctions.Module.GetEntityRelationship(entity);
-        
-        if (string.IsNullOrWhiteSpace(relations))
-        {
-          Dialogs.ShowMessage(mtg.EntityRelationshipSearch.Resources.NotFoundRelationships, MessageType.Information);
-          return;
-        }
-        
         var report = mtg.EntityRelationshipSearch.Reports.GetEntityRelashionshipSearchReport();
-        var sourceEntityTypeName = mtg.EntityRelationshipSearch.PublicFunctions.Module.GetSourceEntityTypeName(entity);
         
         report.EntityId = entity.Id;
-        report.SourceEntityName = string.Format("{0} \"{1}\"", sourceEntityTypeName, entity.DisplayValue);
-        report.Relashions = relations;
+        report.DbTableName = mtg.EntityRelationshipSearch.PublicFunctions.Module.GetDbTableName(entity);
+        report.EntityGuid = mtg.EntityRelationshipSearch.PublicFunctions.Module.GetEntityGuid(entity);
+        report.HyperlinkTemplate = mtg.EntityRelationshipSearch.PublicFunctions.Module.GetTemplateUrl(entity);
+        report.SourceEntityName = string.Format("{0} \"{1}\"", mtg.EntityRelationshipSearch.PublicFunctions.Module.GetSourceEntityTypeName(entity), entity.DisplayValue);
         
         report.Open();
       }

@@ -74,18 +74,6 @@
       "ReturnTypeFullName": "System.String"
     },
     {
-      "Name": "GetEntityRelationship",
-      "Parameters": [
-        {
-          "Name": "entity",
-          "ParameterType": "global::Sungero.Domain.Shared.IEntity",
-          "ParameterTypeFullName": "Sungero.Domain.Shared.IEntity, Sungero.Domain.Shared"
-        }
-      ],
-      "ReturnType": "global::System.String",
-      "ReturnTypeFullName": "System.String"
-    },
-    {
       "Name": "GetSourceEntityTypeName",
       "Parameters": [
         {
