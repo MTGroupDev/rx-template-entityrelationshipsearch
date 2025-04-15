@@ -101,7 +101,7 @@ SET @query = N'
 EXEC sp_executesql @query, N'@source_entity_id BIGINT', @source_entity_id;
 
 -- Вывод результата после выполнения блока
-SELECT * FROM #tmp_result_table;]]></mssql>
+SELECT entity_type, entity_id, COALESCE(discriminator, '') as discriminator, COALESCE(entity_name, '') as entity_name FROM #tmp_result_table;]]></mssql>
     <postgres><![CDATA[DO $$ 
 DECLARE 
     source_entity_id BIGINT := {1};  -- ID сущности (источник)
@@ -169,7 +169,7 @@ BEGIN
 END $$;
 
 -- Вывод результата после выполнения блока
-SELECT * FROM tmp_result_table;]]></postgres>
+SELECT entity_type, entity_id, COALESCE(discriminator, '') as discriminator, COALESCE(entity_name, '') as entity_name FROM tmp_result_table;]]></postgres>
   </query>
   <query key="GetCollectionParent">
     <mssql><![CDATA[-- 0 - наименование таблицы свойства-коллекции

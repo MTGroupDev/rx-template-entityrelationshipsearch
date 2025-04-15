@@ -20,8 +20,6 @@ namespace mtg.EntityRelationshipSearch
     {
       var reportSessionId = Guid.NewGuid().ToString();
       var report = EntityRelashionshipSearchReport;
-      var dbTableName = report.DbTableName;
-      var entityGuid = report.EntityGuid;
       var hyperlinkTemplate = report.HyperlinkTemplate;
       var entityId = report.EntityId;
       var tableRows = new List<mtg.EntityRelationshipSearch.Structures.Module.TableRow>();
@@ -30,10 +28,10 @@ namespace mtg.EntityRelationshipSearch
       report.ReportSessionId = reportSessionId;
       
       // Первый запрос в БД, для получения всех связей сущности.
-      GetAllRelationsFromDB(relationshipsInfo, dbTableName, entityId.Value);
+      GetAllRelationsFromDB(relationshipsInfo, report.DbTableName, entityId.Value);
       
       // Второй запрос в БД, для определения родителей свойств-коллекций.
-      FillParentCollectionProperties(relationshipsInfo, entityGuid, entityId.Value);
+      FillParentCollectionProperties(relationshipsInfo, report.EntityGuid, entityId.Value);
       
       report.HasRelationships = relationshipsInfo.Any();
       
@@ -78,13 +76,10 @@ namespace mtg.EntityRelationshipSearch
             {
               var entityInfo = Structures.Module.EntityInfo.Create();
               
-              entityInfo.TableName = GetSafeString(reader, 0);
-              // Здесь может быть NULL.
-              entityInfo.EntityId = GetSafeLong(reader, 1);
-              // Здесь может быть NULL.
-              entityInfo.EntityGuid = GetSafeString(reader, 2);
-              // Здесь может быть NULL.
-              entityInfo.EntityName = GetSafeString(reader, 3);
+              entityInfo.TableName = reader.GetString(0);
+              entityInfo.EntityId = reader.GetInt64(1);
+              entityInfo.EntityGuid = reader.GetString(2);
+              entityInfo.EntityName = reader.GetString(3);
               entityInfo.IsCollection = IsCollectionEntity(entityInfo.EntityGuid);
               entityInfo.EntityType = GetEntityDisplayName(entityInfo.EntityGuid, entityInfo.IsCollection);
               
@@ -154,8 +149,8 @@ namespace mtg.EntityRelationshipSearch
             {
               while (readerCollection.Read())
               {
-                collection.ParentEntityId = GetSafeLong(readerCollection, 0);
-                collection.ParentEntityGuid = GetSafeGuid(readerCollection, 1).ToString();
+                collection.ParentEntityId = readerCollection.GetInt64(0);
+                collection.ParentEntityGuid = readerCollection.GetGuid(1).ToString();
                 collection.EntityName = parentMetadata.GetDisplayName() + mtg.EntityRelationshipSearch.Resources.CollectionPart;
               }
             }
@@ -180,39 +175,6 @@ namespace mtg.EntityRelationshipSearch
       
       // TODO: Протестировать typeof() при адаптации на новые версии.
       return typeof(Sungero.Domain.Shared.IChildEntity).IsAssignableFrom(entityType);
-    }
-    
-    /// <summary>
-    /// Безопасно получить строку из DataReader.
-    /// </summary>
-    /// <param name="reader">DataReader.</param>
-    /// <param name="columnNumber">Номер столбца.</param>
-    /// <returns>Строка из DataReader. Если не удалось получить строку, возвращается пустая строка.</returns>
-    public static string GetSafeString(System.Data.IDataReader reader, int columnNumber)
-    {
-      return reader.IsDBNull(columnNumber) ? string.Empty : reader.GetString(columnNumber);
-    }
-    
-    /// <summary>
-    /// Безопасно получить число (long) из DataReader.
-    /// </summary>
-    /// <param name="reader">DataReader.</param>
-    /// <param name="columnNumber">Номер столбца.</param>
-    /// <returns>Число из DataReader. Если не удалось получить число, возвращается 0.</returns>
-    public static long GetSafeLong(System.Data.IDataReader reader, int columnNumber)
-    {
-      return reader.IsDBNull(columnNumber) ? 0 : reader.GetInt64(columnNumber);
-    }
-    
-    /// <summary>
-    /// Безопасно получить Guid из DataReader.
-    /// </summary>
-    /// <param name="reader">DataReader.</param>
-    /// <param name="columnNumber">Номер столбца.</param>
-    /// <returns>Guid из DataReader. Если не удалось получить число, возвращается Guid.Empty.</returns>
-    public static Guid GetSafeGuid(System.Data.IDataReader reader, int columnNumber)
-    {
-      return reader.IsDBNull(columnNumber) ? Guid.Empty : reader.GetGuid(columnNumber);
     }
     
     /// <summary>
