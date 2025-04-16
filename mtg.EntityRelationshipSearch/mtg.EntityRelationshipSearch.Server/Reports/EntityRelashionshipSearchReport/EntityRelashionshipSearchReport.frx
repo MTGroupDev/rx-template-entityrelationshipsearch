@@ -54,7 +54,7 @@ namespace FastReport
     <PageHeaderBand Name="PageHeader1" Top="60.7" Width="718.2" Height="75.6">
       <TextObject Name="Text3" Top="47.25" Width="623.7" Height="28.35" Border.Lines="All" Text="[mtg.EntityRelationshipSearch.Reports.Resources.EntityRelashionshipSearchReport.NameColumn]" HorzAlign="Center" VertAlign="Center" Font="Arial, 11pt, style=Bold"/>
       <TextObject Name="Text4" Left="623.7" Top="47.25" Width="94.5" Height="28.35" Border.Lines="All" Text="[mtg.EntityRelationshipSearch.Reports.Resources.EntityRelashionshipSearchReport.ID]" HorzAlign="Center" VertAlign="Center" Font="Arial, 11pt, style=Bold"/>
-      <TextObject Name="Text2" Width="718.2" Height="28.35" Text="[[HasRelationships] ? string.Empty : &quot;С сущностью нет связанных объектов в системе.&quot;]&#13;&#10;&#13;&#10;" HorzAlign="Center" Font="Arial, 11pt"/>
+      <TextObject Name="Text2" Width="718.2" Height="28.35" Text="[[HasRelationships] ? string.Empty : mtg.EntityRelationshipSearch.Resources.NotFoundRelationships]&#13;&#10;&#13;&#10;" HorzAlign="Center" Font="Arial, 11pt"/>
     </PageHeaderBand>
     <GroupHeaderBand Name="GroupHeader1" Top="140.3" Width="718.2" Height="28.35" Condition="[EntityRelashionshipSearchTable.EntityType]">
       <TextObject Name="Text5" Width="718.2" Height="28.35" Border.Lines="All" Text="[EntityRelashionshipSearchTable.EntityType]" VertAlign="Center" Font="Arial, 11pt, style=Bold"/>
