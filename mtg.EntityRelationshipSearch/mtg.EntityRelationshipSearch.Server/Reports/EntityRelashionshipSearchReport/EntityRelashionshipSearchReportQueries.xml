@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<queries>
+  <query key="SelectTableData">
+    <default><![CDATA[select *
+from Sungero_Reports_EntityRelationSearch
+where ReportSessionId = @ReportSessionId]]></default>
+  </query>
+  <query key="CreateTableData">
+    <mssql><![CDATA[CREATE TABLE {0}
+(ReportSessionId varchar(256) NOT NULL,
+EntityId bigint NOT NULL,
+EntityType nvarchar(max) NOT NULL, 
+Name nvarchar(max) NULL, 
+EntityHyperlink nvarchar(max) NOT NULL)]]></mssql>
+    <postgres><![CDATA[CREATE TABLE {0}
+(ReportSessionId varchar NOT NULL,
+EntityId bigint NULL,
+EntityType varchar NULL, 
+Name varchar NULL, 
+EntityHyperlink varchar NULL)]]></postgres>
+  </query>
+  <query key="GetRelationship">
+    <mssql><![CDATA[DECLARE
+	@source_entity_id BIGINT = {1},
+	@source_table_name NVARCHAR(128) = '{0}',
+	@query NVARCHAR(MAX),
+	@table_name NVARCHAR(128),
+  @column_name NVARCHAR(128);
+
+DROP TABLE IF EXISTS #tmp_result_table;
+
+CREATE TABLE #tmp_result_table
+(entity_type NVARCHAR(255),
+entity_id BIGINT,
+discriminator NVARCHAR(255),
+entity_name NVARCHAR(255)
+);
+
+-- Поиск таблиц и колонок, где есть связи с сущностью
+DECLARE db_cursor CURSOR FOR
+    SELECT 
+        OBJECT_NAME(fk.parent_object_id) AS table_name,
+        COL_NAME(fc.parent_object_id, fc.parent_column_id) AS column_name
+    FROM sys.foreign_keys AS fk
+    INNER JOIN sys.foreign_key_columns AS fc 
+        ON fk.object_id = fc.constraint_object_id
+    WHERE OBJECT_NAME(fk.referenced_object_id) = @source_table_name;
+
+OPEN db_cursor;
+FETCH NEXT FROM db_cursor INTO @table_name, @column_name;
+
+-- Для каждой таблицы ищем связи и выполняем запрос
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    -- Проверка, есть ли в таблице колонка "name"
+    IF EXISTS (
+        SELECT 1 
+        FROM INFORMATION_SCHEMA.COLUMNS 
+        WHERE TABLE_NAME = @table_name AND COLUMN_NAME = 'name'
+    )
+    BEGIN
+        -- Если есть колонка "name", выполняем запрос с ней
+        SET @query = N'
+            INSERT INTO #tmp_result_table (entity_type, entity_id, discriminator, entity_name)
+            SELECT ''' + @table_name + ''', id, discriminator, name 
+            FROM ' + @table_name + ' 
+            WHERE ' + @column_name + ' = @source_entity_id';
+    END
+    ELSE
+    BEGIN
+        -- Если нет колонки "name", выполняем запрос без неё
+        SET @query = N'
+            INSERT INTO #tmp_result_table (entity_type, entity_id, discriminator, entity_name)
+            SELECT ''' + @table_name + ''', id, discriminator, NULL 
+            FROM ' + @table_name + ' 
+            WHERE ' + @column_name + ' = @source_entity_id';
+    END
+
+    -- Выполнение динамического запроса
+    EXEC sp_executesql @query, N'@source_entity_id BIGINT', @source_entity_id;
+
+    FETCH NEXT FROM db_cursor INTO @table_name, @column_name;
+END
+
+-- Закрытие и удаление курсора
+CLOSE db_cursor;
+DEALLOCATE db_cursor;
+
+-- Поиск связей в задачах
+SET @query = N'
+    INSERT INTO #tmp_result_table (entity_type, entity_id, discriminator, entity_name)
+    SELECT 
+        ''sungero_wf_task'' AS entity_type,
+        t.id AS entity_id,
+        t.discriminator AS discriminator,
+        t.subject AS entity_name
+    FROM sungero_wf_attachment att
+    JOIN sungero_wf_task t ON t.id = att.task
+    WHERE att.attachmentid = @source_entity_id';
+
+EXEC sp_executesql @query, N'@source_entity_id BIGINT', @source_entity_id;
+
+-- Вывод результата после выполнения блока
+SELECT entity_type, entity_id, COALESCE(discriminator, '') as discriminator, COALESCE(entity_name, '') as entity_name FROM #tmp_result_table;]]></mssql>
+    <postgres><![CDATA[DO $$ 
+DECLARE 
+    source_entity_id BIGINT := {1};  -- ID сущности (источник)
+	  source_table_name TEXT := '{0}'; -- Наименование таблицы сущности (источник)
+    rec RECORD;
+    query TEXT;
+BEGIN
+    -- Создаётся временная таблица, если её нет (чтобы хранить результат)
+    CREATE TEMP TABLE IF NOT EXISTS tmp_result_table (
+        entity_type TEXT,
+        entity_id INT,
+        discriminator TEXT,
+        entity_name TEXT
+    ) ON COMMIT DROP;
+
+    -- Поиск таблиц и колонок, где есть связи с сущностью
+    FOR rec IN 
+        WITH uses_tables AS (
+            SELECT
+                conrelid::regclass AS table_name,
+                a.attname AS column_name
+            FROM pg_constraint AS c
+            JOIN pg_attribute AS a 
+                ON a.attnum = ANY(c.conkey) 
+                AND a.attrelid = c.conrelid
+            WHERE confrelid = source_table_name::regclass
+        ) 
+        SELECT table_name, column_name FROM uses_tables
+    LOOP
+        -- Проверка, есть ли в таблице колонка "name"
+        IF EXISTS (
+            SELECT 1 
+            FROM information_schema.columns 
+            WHERE table_name = rec.table_name::text AND column_name = 'name'
+        ) THEN
+            -- SQL-запрос с учетом наличия "name"
+            query := format(
+                'INSERT INTO tmp_result_table (entity_type, entity_id, discriminator, entity_name) ' ||
+                'SELECT %L, id, discriminator, name FROM %I WHERE %I = %s',
+                rec.table_name, rec.table_name, rec.column_name, source_entity_id
+            );
+        ELSE
+            -- SQL-запрос без "name", если такой колонки нет
+            query := format(
+                'INSERT INTO tmp_result_table (entity_type, entity_id, discriminator, entity_name) ' ||
+                'SELECT %L, id, discriminator, NULL FROM %I WHERE %I = %s',
+                rec.table_name, rec.table_name, rec.column_name, source_entity_id
+            );
+        END IF;
+
+        -- Выполнение запроса
+        EXECUTE query;
+    END LOOP;
+	-- Поиск связей в задачах
+	INSERT INTO tmp_result_table (entity_type, entity_id, discriminator, entity_name)
+	SELECT 
+        'sungero_wf_task' AS entity_type,
+        t.id AS entity_id,
+        t.discriminator AS discriminator,
+        t.subject AS entity_name
+    FROM sungero_wf_attachment att
+    JOIN sungero_wf_task t ON t.id = att.task
+    WHERE att.attachmentid = source_entity_id;
+	
+END $$;
+
+-- Вывод результата после выполнения блока
+SELECT entity_type, entity_id, COALESCE(discriminator, '') as discriminator, COALESCE(entity_name, '') as entity_name FROM tmp_result_table;]]></postgres>
+  </query>
+  <query key="GetCollectionParent">
+    <mssql><![CDATA[-- 0 - наименование таблицы свойства-коллекции
+-- 1 - наименование таблицы родителя свойства-коллекции
+-- 2 - имя столбца по которому искать родителя
+-- 3 - ИД основной сущности (из которой происходит поиск связей)
+-- 4 - наименование столбца свойства-коллекции
+SELECT collection.[{2}], main.[discriminator]
+FROM [{0}] collection
+JOIN [{1}] main ON main.id = collection.[{2}]
+WHERE collection.[{4}] = {3};]]></mssql>
+    <postgres><![CDATA[-- 0 - наименование таблицы свойства-коллекции
+-- 1 - наименование таблицы родителя свойства-коллекции
+-- 2 - имя столбца по которому искать родителя
+-- 3 - ИД основной сущности (из которой происходит поиск связей)
+-- 4 - наименование столбца свойства-коллекции
+select collection.{2}, main.discriminator 
+from {0} collection
+join {1} main ON main.id = collection.{2}
+where {4} = {3}]]></postgres>
+  </query>
+</queries>
