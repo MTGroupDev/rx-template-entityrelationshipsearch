@@ -6,7 +6,7 @@ using Sungero.CoreEntities;
 
 namespace mtg.EntityRelationshipSearchSolution.Server
 {
-  public class ModuleAsyncHandlers
+  public partial class ModuleAsyncHandlers
   {
 
   }
