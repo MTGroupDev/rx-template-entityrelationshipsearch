@@ -6,7 +6,7 @@ using Sungero.CoreEntities;
 
 namespace mtg.EntityRelationshipSearchSolution.Client
 {
-  public class ModuleFunctions
+  public partial class ModuleFunctions
   {
 
   }

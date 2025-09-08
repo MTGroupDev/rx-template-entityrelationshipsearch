@@ -9,7 +9,7 @@ using Sungero.Docflow;
 
 namespace mtg.EntityRelationshipSearch.Server
 {
-  public class ModuleFunctions
+  public partial class ModuleFunctions
   {
     /// <summary>
     /// Получить имя таблицы в БД по сущности.

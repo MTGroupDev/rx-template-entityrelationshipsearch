@@ -31,7 +31,6 @@
       "ItemId": "5ecdf6d5-c8a0-4913-b381-e69d5dac796e"
     }
   ],
-  "IconResourcesKeys": [],
   "Importance": "Medium",
   "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "InterfaceNamespace": "mtg.EntityRelationshipSearchSolution",
@@ -42,7 +41,6 @@
   "PublicStructures": [],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "mtg.EntityRelationshipSearchSolution",
-  "ResourcesKeys": [],
   "ServerAssemblyName": "mtg.EntityRelationshipSearchSolution.Server",
   "ServerNamespace": "mtg.EntityRelationshipSearchSolution.Server",
   "SharedAssemblyName": "mtg.EntityRelationshipSearchSolution.Shared",
@@ -53,11 +51,11 @@
   "Versions": [
     {
       "Type": "SolutionMetadata",
-      "Number": 9
+      "Number": 11
     },
     {
       "Type": "ModuleMetadata",
-      "Number": 9
+      "Number": 11
     },
     {
       "Type": "DomainApi",
