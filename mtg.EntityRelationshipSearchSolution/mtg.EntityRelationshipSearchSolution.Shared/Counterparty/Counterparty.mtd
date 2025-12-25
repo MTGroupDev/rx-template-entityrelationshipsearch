@@ -43,9 +43,11 @@
       "Versions": []
     }
   ],
+  "FormViewUuid": "89d62da6-6175-4916-99cc-0020324c1049",
   "IconResourcesKeys": [],
   "IsAbstract": true,
   "LayeredFromGuid": "294767f1-009f-4fbd-80fc-f98c49ddc560",
+  "ListViewUuid": "dcbf953e-5fcd-4d44-875c-4c23340fa815",
   "OperationsClass": "",
   "Properties": [
     {
