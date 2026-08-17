@@ -46,7 +46,7 @@
   "SharedAssemblyName": "mtg.EntityRelationshipSearchSolution.Shared",
   "SharedNamespace": "mtg.EntityRelationshipSearchSolution.Shared",
   "SpecialFolders": [],
-  "Version": "0.0.1.0",
+  "Version": "0.0.1.1",
   "Widgets": [],
   "Versions": [
     {

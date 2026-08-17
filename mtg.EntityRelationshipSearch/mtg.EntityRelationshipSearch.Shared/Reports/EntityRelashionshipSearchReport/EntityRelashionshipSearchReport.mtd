@@ -28,8 +28,7 @@
     {
       "NameGuid": "c2ccd0c3-82e0-440f-b6f6-44220e7e49cd",
       "Name": "EntityId",
-      "InternalDataTypeName": "System.Int64",
-      "IsSimpleDataType": true
+      "InternalDataTypeName": "System.Int64"
     },
     {
       "NameGuid": "a65ce06d-47a6-43cc-95f4-7e7fdd0f76b3",
@@ -59,8 +58,7 @@
     {
       "NameGuid": "1b4364cc-5fc6-491c-a4e4-0a7d0669d696",
       "Name": "HasRelationships",
-      "InternalDataTypeName": "System.Boolean",
-      "IsSimpleDataType": true
+      "InternalDataTypeName": "System.Boolean"
     }
   ],
   "PublicStructures": [],
