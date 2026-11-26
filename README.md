@@ -1,6 +1,6 @@
 # rx-template-entityrelationshipsearch
 Шаблон разработки "Поиск связей сущности".
-Решение для Directum RX 4.12 и выше
+Решение для Directum RX 4.13 и выше
 ____
 # Описание шаблона
 
