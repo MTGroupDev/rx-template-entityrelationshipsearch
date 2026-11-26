@@ -17,12 +17,12 @@
   "IconResourcesKeys": [],
   "IntegrationServiceName": "EntityRelationshipSearchEntityRelashionshipSearchReport",
   "Overridden": [
-    "DisplayName",
-    "Description",
-    "ExportFormats",
     "DefaultExportFormat",
-    "Parameters",
-    "HandledEvents"
+    "Description",
+    "DisplayName",
+    "ExportFormats",
+    "HandledEvents",
+    "Parameters"
   ],
   "Parameters": [
     {
