@@ -37,8 +37,8 @@
       "Controls": [],
       "IsAncestorMetadata": true,
       "Overridden": [
-        "UseAncestorControls",
-        "SettingsResourceKey"
+        "SettingsResourceKey",
+        "UseAncestorControls"
       ],
       "Versions": []
     }
